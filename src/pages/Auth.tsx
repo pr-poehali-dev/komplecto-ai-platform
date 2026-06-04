@@ -6,7 +6,7 @@ type AuthStep = "choose" | "login" | "register-pro" | "register-sup" | "verify" 
 interface User {
   name: string;
   email: string;
-  role: "professional" | "supplier";
+  role: "professional" | "supplier" | "admin";
   verified: boolean;
 }
 
@@ -265,14 +265,39 @@ export default function Auth({ onAuth }: Props) {
                 Зарегистрироваться
               </button>
             </p>
-            {/* Demo entry */}
-            <button
-              onClick={() => onAuth({ name: "Алексей И.", email: "demo@komplekto.ai", role: "professional", verified: true })}
-              className="mt-3 w-full py-3 rounded-xl text-sm transition-all"
-              style={{ border: "1px dashed var(--border-bright)", color: "var(--text-muted)" }}
-            >
-              Войти как демо-пользователь
-            </button>
+            {/* Demo entries */}
+            <div className="mt-3 space-y-2">
+              <button
+                onClick={() => onAuth({ name: "Алексей Иванов", email: "demo@komplekto.ai", role: "professional", verified: true })}
+                className="w-full py-3 rounded-xl text-sm transition-all flex items-center justify-center gap-2"
+                style={{ border: "1px dashed var(--border-bright)", color: "var(--text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-bright)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border-color)")}
+              >
+                <Icon name="HardHat" size={14} />
+                Демо — Профессионал
+              </button>
+              <button
+                onClick={() => onAuth({ name: "ТД Аквасфера", email: "supplier@aquasfera.ru", role: "supplier", verified: true })}
+                className="w-full py-3 rounded-xl text-sm transition-all flex items-center justify-center gap-2"
+                style={{ border: "1px dashed var(--border-bright)", color: "var(--text-muted)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-bright)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border-color)")}
+              >
+                <Icon name="Truck" size={14} />
+                Демо — Поставщик
+              </button>
+              <button
+                onClick={() => onAuth({ name: "Admin КОМПЛЕКТО", email: "admin@komplekto.ai", role: "admin", verified: true })}
+                className="w-full py-3 rounded-xl text-sm transition-all flex items-center justify-center gap-2"
+                style={{ border: "1px dashed rgba(255,59,48,0.3)", color: "#FF3B30" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,59,48,0.5)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255,59,48,0.3)")}
+              >
+                <Icon name="ShieldCheck" size={14} />
+                Демо — Администратор
+              </button>
+            </div>
           </div>
         )}
 

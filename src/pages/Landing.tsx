@@ -72,7 +72,7 @@ export default function Landing({ onEnter }: Props) {
     >
       {/* Nav */}
       <nav
-        className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 h-16"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center px-4 md:px-8 h-16"
         style={{
           background: "rgba(5,5,5,0.85)",
           backdropFilter: "blur(20px)",
@@ -90,7 +90,7 @@ export default function Landing({ onEnter }: Props) {
             КОМПЛЕКТО
           </span>
         </div>
-        <div className="flex items-center gap-6 mx-auto">
+        <div className="hidden md:flex items-center gap-6 mx-auto">
           {["Платформа", "Каталог", "Поставщикам", "Цены"].map((item) => (
             <span
               key={item}
@@ -103,19 +103,20 @@ export default function Landing({ onEnter }: Props) {
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          <button className="btn-ghost text-xs" onClick={onEnter} style={{ padding: "7px 16px" }}>
+        <div className="flex items-center gap-2 ml-auto md:ml-0">
+          <button className="btn-ghost text-xs" onClick={onEnter} style={{ padding: "7px 14px" }}>
             Войти
           </button>
-          <button className="btn-orange text-xs" onClick={onEnter} style={{ padding: "7px 16px" }}>
-            Попробовать бесплатно
+          <button className="btn-orange text-xs" onClick={onEnter} style={{ padding: "7px 14px" }}>
+            <span className="hidden md:inline">Попробовать бесплатно</span>
+            <span className="md:hidden">Начать</span>
           </button>
         </div>
       </nav>
 
       {/* Hero */}
       <section
-        className="relative flex flex-col items-center justify-center pt-32 pb-24 px-8 text-center overflow-hidden"
+        className="relative flex flex-col items-center justify-center pt-24 md:pt-32 pb-16 md:pb-24 px-5 md:px-8 text-center overflow-hidden"
         style={{ minHeight: "100vh" }}
       >
         {/* Grid bg */}
@@ -175,9 +176,9 @@ export default function Landing({ onEnter }: Props) {
           </p>
         </div>
 
-        {/* Preview mockup */}
+        {/* Preview mockup — hidden on small mobile */}
         <div
-          className={`relative z-10 mt-16 w-full max-w-5xl mx-auto rounded-2xl overflow-hidden transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+          className={`hidden sm:block relative z-10 mt-12 md:mt-16 w-full max-w-5xl mx-auto rounded-2xl overflow-hidden transition-all duration-1000 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
           style={{
             border: "1px solid var(--border-bright)",
             boxShadow: "0 40px 120px rgba(0,0,0,0.6), 0 0 80px rgba(255,122,0,0.06)",
@@ -268,8 +269,8 @@ export default function Landing({ onEnter }: Props) {
       </section>
 
       {/* Stats */}
-      <section className="px-8 py-16 border-y" style={{ borderColor: "var(--border-color)" }}>
-        <div className="max-w-4xl mx-auto grid grid-cols-4 gap-8">
+      <section className="px-5 md:px-8 py-12 md:py-16 border-y" style={{ borderColor: "var(--border-color)" }}>
+        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((s, i) => (
             <div key={i} className="text-center">
               <div
@@ -287,19 +288,19 @@ export default function Landing({ onEnter }: Props) {
       </section>
 
       {/* Features */}
-      <section className="px-8 py-24 max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+      <section className="px-5 md:px-8 py-16 md:py-24 max-w-6xl mx-auto">
+        <div className="text-center mb-10 md:mb-16">
           <div className="tag tag-orange mb-4 mx-auto inline-flex">Возможности платформы</div>
-          <h2 className="text-4xl font-black mb-4" style={{ color: "var(--text-primary)" }}>
+          <h2 className="text-3xl md:text-4xl font-black mb-4" style={{ color: "var(--text-primary)" }}>
             Всё для профессионала
             <br />в одном рабочем пространстве
           </h2>
-          <p className="text-lg" style={{ color: "var(--text-secondary)" }}>
+          <p className="text-base md:text-lg" style={{ color: "var(--text-secondary)" }}>
             От подбора товаров до финансирования объекта
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {features.map((f, i) => (
             <div
               key={i}
@@ -328,19 +329,19 @@ export default function Landing({ onEnter }: Props) {
 
       {/* Roles */}
       <section
-        className="px-8 py-24"
+        className="px-5 md:px-8 py-16 md:py-24"
         style={{ background: "var(--surface-2)", borderTop: "1px solid var(--border-color)" }}
       >
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-black mb-3" style={{ color: "var(--text-primary)" }}>
+          <div className="text-center mb-10 md:mb-12">
+            <h2 className="text-2xl md:text-3xl font-black mb-3" style={{ color: "var(--text-primary)" }}>
               Для кого КОМПЛЕКТО?
             </h2>
-            <p style={{ color: "var(--text-secondary)" }}>
+            <p className="text-sm md:text-base" style={{ color: "var(--text-secondary)" }}>
               Единая платформа для всех участников строительного процесса
             </p>
           </div>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {roles.map((r, i) => (
               <div
                 key={i}
@@ -366,8 +367,8 @@ export default function Landing({ onEnter }: Props) {
       </section>
 
       {/* KOMI AI Spotlight */}
-      <section className="px-8 py-24 max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-center">
+      <section className="px-5 md:px-8 py-16 md:py-24 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           <div>
             <div className="tag tag-orange mb-6 inline-flex">
               <Icon name="Sparkles" size={10} />

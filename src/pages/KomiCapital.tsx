@@ -95,12 +95,12 @@ export default function KomiCapital() {
   const active = products.find((p) => p.id === selected);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto animate-fade-in">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <h1 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>KOMI Capital</h1>
+            <h1 className="text-xl md:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>KOMI Capital</h1>
             <span className="tag tag-orange">Fintech</span>
           </div>
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
@@ -108,11 +108,11 @@ export default function KomiCapital() {
           </p>
         </div>
         <div
-          className="rounded-xl p-4 text-right"
+          className="rounded-xl p-4 text-right flex-shrink-0"
           style={{ background: "var(--surface-3)", border: "1px solid var(--border-color)" }}
         >
           <div className="text-xs mb-1" style={{ color: "var(--text-muted)" }}>Ваш кредитный лимит</div>
-          <div className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>₽ 18 500 000</div>
+          <div className="text-xl md:text-2xl font-bold" style={{ color: "var(--text-primary)" }}>₽ 18 500 000</div>
           <div className="text-xs" style={{ color: "#34C759" }}>Доступно: ₽ 16 100 000</div>
         </div>
       </div>
@@ -142,11 +142,11 @@ export default function KomiCapital() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
         {/* Products */}
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <div className="text-sm font-semibold mb-4" style={{ color: "var(--text-primary)" }}>Финансовые продукты</div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {products.map((p) => (
               <div
                 key={p.id}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import { toast } from "sonner";
 
 interface Props {
   user?: { name: string; email: string; role: string; verified: boolean };
@@ -52,27 +53,31 @@ export default function Settings({ user }: Props) {
       </aside>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-8">
+      <div className="flex-1 overflow-y-auto p-5 md:p-8">
         {activeSection === "profile" && (
           <div className="max-w-xl animate-fade-in">
             <h2 className="text-lg font-bold mb-6" style={{ color: "var(--text-primary)" }}>Профиль</h2>
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold"
-                style={{ background: "var(--orange)", color: "#000" }}>АИ</div>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold flex-shrink-0"
+                style={{ background: "var(--orange)", color: "#000" }}>
+                {user?.name?.split(" ").map(n => n[0]).join("").slice(0,2).toUpperCase() || "АИ"}
+              </div>
               <div>
-                <div className="font-semibold" style={{ color: "var(--text-primary)" }}>Алексей Иванов</div>
-                <div className="text-sm mb-2" style={{ color: "var(--text-muted)" }}>Professional · Москва</div>
-                <button className="btn-ghost text-xs">Изменить фото</button>
+                <div className="font-semibold" style={{ color: "var(--text-primary)" }}>{user?.name || "Алексей Иванов"}</div>
+                <div className="text-sm mb-2" style={{ color: "var(--text-muted)" }}>
+                  {user?.role === "supplier" ? "Поставщик" : user?.role === "admin" ? "Администратор" : "Professional"} · Москва
+                </div>
+                <button className="btn-ghost text-xs" onClick={() => toast.info("Загрузка фото — скоро")}>Изменить фото</button>
               </div>
             </div>
             <div className="space-y-4">
               {[
-                { label: "Имя", val: "Алексей" },
-                { label: "Фамилия", val: "Иванов" },
-                { label: "Email", val: "a.ivanov@studio.ru" },
+                { label: "Имя", val: user?.name?.split(" ")[0] || "Алексей" },
+                { label: "Фамилия", val: user?.name?.split(" ")[1] || "Иванов" },
+                { label: "Email", val: user?.email || "a.ivanov@studio.ru" },
                 { label: "Телефон", val: "+7 (903) 123-45-67" },
                 { label: "Компания", val: "Design Studio AI" },
-                { label: "Роль", val: "Дизайнер интерьера" },
+                { label: "Роль", val: user?.role === "supplier" ? "Поставщик" : "Дизайнер интерьера" },
               ].map((f, i) => (
                 <div key={i}>
                   <label className="text-xs mb-1.5 block" style={{ color: "var(--text-muted)" }}>{f.label}</label>
@@ -89,7 +94,7 @@ export default function Settings({ user }: Props) {
                   />
                 </div>
               ))}
-              <button className="btn-orange text-sm mt-2">Сохранить изменения</button>
+              <button className="btn-orange text-sm mt-2" onClick={() => toast.success("Профиль обновлён")}>Сохранить изменения</button>
             </div>
           </div>
         )}

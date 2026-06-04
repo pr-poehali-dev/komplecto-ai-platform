@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import { toast } from "sonner";
 
 const chats = [
   { id: 1, name: "ТД Аквасфера", type: "supplier", lastMsg: "Отгрузка завтра в 10:00, всё готово", time: "14:32", unread: 2, online: true },
@@ -43,12 +44,20 @@ export default function Chat() {
   const activeChat = chats.find((c) => c.id === active);
   const messages = localMessages[active] || [];
 
+  const showList = !active || window.innerWidth >= 768;
+  const showChat = active && (window.innerWidth >= 768 || active > 0);
+
   return (
     <div className="flex h-full">
       {/* Chat list */}
       <aside
-        className="w-72 flex-shrink-0 border-r flex flex-col"
-        style={{ borderColor: "var(--border-color)", background: "var(--surface-2)" }}
+        className="flex-shrink-0 border-r flex flex-col"
+        style={{
+          width: window.innerWidth < 768 ? (active ? 0 : "100%") : 288,
+          overflow: window.innerWidth < 768 && active ? "hidden" : undefined,
+          borderColor: "var(--border-color)",
+          background: "var(--surface-2)",
+        }}
       >
         <div className="p-4 border-b" style={{ borderColor: "var(--border-color)" }}>
           <h2 className="font-bold text-sm mb-3" style={{ color: "var(--text-primary)" }}>Чаты</h2>
@@ -117,7 +126,8 @@ export default function Chat() {
         </div>
 
         <div className="p-3 border-t" style={{ borderColor: "var(--border-color)" }}>
-          <button className="btn-ghost w-full text-xs" style={{ justifyContent: "center" }}>
+          <button className="btn-ghost w-full text-xs" style={{ justifyContent: "center" }}
+            onClick={() => toast.info("Выберите контакт для нового чата")}>
             <Icon name="Plus" size={13} />
             Новый чат
           </button>
@@ -125,12 +135,20 @@ export default function Chat() {
       </aside>
 
       {/* Chat window */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col" style={{ display: !active ? "none" : undefined }}>
         {/* Chat header */}
         <div
-          className="flex items-center gap-3 px-6 py-4 border-b"
+          className="flex items-center gap-3 px-4 md:px-6 py-4 border-b"
           style={{ borderColor: "var(--border-color)", background: "var(--surface-2)" }}
         >
+          {/* Mobile back */}
+          <button
+            className="md:hidden w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{ color: "var(--text-muted)" }}
+            onClick={() => setActive(0 as typeof active)}
+          >
+            <Icon name="ChevronLeft" size={18} />
+          </button>
           <div className="relative">
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center font-bold"

@@ -1,4 +1,5 @@
 import Icon from "@/components/ui/icon";
+import { toast } from "sonner";
 
 interface Props {
   onNavigate: (page: string) => void;
@@ -70,21 +71,21 @@ const komiRecs = [
 
 export default function Dashboard({ onNavigate, user }: Props) {
   return (
-    <div className="p-6 max-w-7xl mx-auto animate-fade-in">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto animate-fade-in">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-start justify-between mb-6 gap-3">
         <div>
-          <h1 className="text-2xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>
+          <h1 className="text-xl md:text-2xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>
             Доброе утро, {user?.name?.split(" ")[0] || "Алексей"}
           </h1>
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
             Четверг, 4 июня 2025 · 12 активных объектов
           </p>
         </div>
-        <div className="flex gap-2">
-          <button className="btn-ghost text-sm" onClick={() => onNavigate("projects")}>
+        <div className="flex gap-2 flex-shrink-0">
+          <button className="btn-ghost text-sm" onClick={() => { onNavigate("projects"); toast.info("Создайте новый проект"); }}>
             <Icon name="Plus" size={14} />
-            Новый проект
+            <span className="hidden md:inline">Новый проект</span>
           </button>
           <button className="btn-orange text-sm" onClick={() => onNavigate("komi")}>
             <Icon name="Sparkles" size={14} />
@@ -94,7 +95,7 @@ export default function Dashboard({ onNavigate, user }: Props) {
       </div>
 
       {/* Stats row */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
         {stats.map((s, i) => (
           <div key={i} className="stat-card">
             <div className="flex items-center justify-between mb-3">
@@ -119,9 +120,9 @@ export default function Dashboard({ onNavigate, user }: Props) {
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
         {/* Projects */}
-        <div className="col-span-2">
+        <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold" style={{ color: "var(--text-primary)" }}>
               Активные проекты

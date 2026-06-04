@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
+import { toast } from "sonner";
 
 const projects = [
   {
@@ -82,8 +83,12 @@ export default function Projects() {
     <div className="flex h-full">
       {/* Project list */}
       <div
-        className="w-80 flex-shrink-0 border-r overflow-y-auto"
-        style={{ borderColor: "var(--border-color)", background: "var(--surface-2)" }}
+        className="w-full md:w-80 flex-shrink-0 border-r overflow-y-auto"
+        style={{
+          borderColor: "var(--border-color)",
+          background: "var(--surface-2)",
+          display: selected && window.innerWidth < 768 ? "none" : undefined,
+        }}
       >
         <div className="p-4 border-b" style={{ borderColor: "var(--border-color)" }}>
           <div className="flex items-center justify-between mb-3">
@@ -154,11 +159,20 @@ export default function Projects() {
             <p className="text-sm">Выберите проект</p>
           </div>
         ) : (
-          <div className="p-6 animate-fade-in">
+          <div className="p-4 md:p-6 animate-fade-in">
+            {/* Mobile back button */}
+            <button
+              className="md:hidden flex items-center gap-2 mb-4 text-sm"
+              style={{ color: "var(--text-muted)" }}
+              onClick={() => setSelected(null)}
+            >
+              <Icon name="ChevronLeft" size={16} />
+              Все проекты
+            </button>
             {/* Project header */}
-            <div className="flex items-start justify-between mb-6">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
               <div>
-                <div className="flex items-center gap-3 mb-1">
+                <div className="flex items-center gap-3 mb-1 flex-wrap">
                   <h1 className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>
                     {activeProject.name}
                   </h1>
@@ -172,12 +186,12 @@ export default function Projects() {
                   <span>Дедлайн: {activeProject.deadline}</span>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <button className="btn-ghost text-xs">
+              <div className="flex gap-2 flex-shrink-0">
+                <button className="btn-ghost text-xs" onClick={() => toast.info("Ссылка скопирована")}>
                   <Icon name="Share2" size={13} />
-                  Поделиться
+                  <span className="hidden md:inline">Поделиться</span>
                 </button>
-                <button className="btn-orange text-xs">
+                <button className="btn-orange text-xs" onClick={() => toast.success("Переход к оформлению заказа")}>
                   <Icon name="ShoppingCart" size={13} />
                   Заказать
                 </button>
@@ -185,7 +199,7 @@ export default function Projects() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-4 gap-3 mb-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
               {[
                 { label: "Бюджет", val: `${(activeProject.budget / 1000000).toFixed(1)} млн ₽`, icon: "Wallet", color: "#FF7A00" },
                 { label: "Потрачено", val: `${(activeProject.spent / 1000000).toFixed(1)} млн ₽`, icon: "CreditCard", color: "#0A84FF" },

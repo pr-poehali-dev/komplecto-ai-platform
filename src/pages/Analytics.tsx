@@ -36,8 +36,8 @@ export default function Analytics() {
   const maxVal = Math.max(...revenueData);
 
   return (
-    <div className="p-6 max-w-7xl mx-auto animate-fade-in">
-      <div className="flex items-center justify-between mb-8">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto animate-fade-in">
+      <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>Аналитика</h1>
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>Данные за 2025 год · Обновлено сегодня</p>
@@ -61,14 +61,14 @@ export default function Analytics() {
       </div>
 
       {/* KPIs */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
         <StatCard label="Оборот за год" value="₽ 26.9М" delta="+34% г/г" icon="TrendingUp" color="#34C759" />
         <StatCard label="Экономия KOMI" value="₽ 1.45М" delta="+18% к плану" icon="Sparkles" color="#FF7A00" />
         <StatCard label="Завершено заказов" value="218" delta="+12% г/г" icon="Package" color="#0A84FF" />
         <StatCard label="NPS платформы" value="74" delta="+6 пунктов" icon="Star" color="#FFD60A" />
       </div>
 
-      <div className="grid grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6">
         {/* Revenue chart */}
         <div className="rounded-xl p-5" style={{ background: "var(--surface-3)", border: "1px solid var(--border-color)" }}>
           <div className="flex items-center justify-between mb-4">
