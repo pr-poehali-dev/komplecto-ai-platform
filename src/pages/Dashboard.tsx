@@ -2,6 +2,7 @@ import Icon from "@/components/ui/icon";
 
 interface Props {
   onNavigate: (page: string) => void;
+  user?: { name: string; role: string; verified: boolean };
 }
 
 const stats = [
@@ -67,14 +68,14 @@ const komiRecs = [
   { text: "Поставщик Cerama Nova предлагает скидку 7% при заказе от 150 000 ₽", icon: "Tag" },
 ];
 
-export default function Dashboard({ onNavigate }: Props) {
+export default function Dashboard({ onNavigate, user }: Props) {
   return (
     <div className="p-6 max-w-7xl mx-auto animate-fade-in">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>
-            Доброе утро, Алексей
+            Доброе утро, {user?.name?.split(" ")[0] || "Алексей"}
           </h1>
           <p className="text-sm" style={{ color: "var(--text-muted)" }}>
             Четверг, 4 июня 2025 · 12 активных объектов

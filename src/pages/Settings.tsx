@@ -1,6 +1,10 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
+interface Props {
+  user?: { name: string; email: string; role: string; verified: boolean };
+}
+
 const sections = [
   { id: "profile", label: "Профиль", icon: "User" },
   { id: "account", label: "Аккаунт", icon: "Settings" },
@@ -23,7 +27,7 @@ const Toggle = ({ checked, onChange }: { checked: boolean; onChange: () => void 
   </button>
 );
 
-export default function Settings() {
+export default function Settings({ user }: Props) {
   const [activeSection, setActiveSection] = useState("profile");
   const [notifs, setNotifs] = useState({ orders: true, komi: true, suppliers: false, news: false });
   const [komiSettings, setKomiSettings] = useState({ autoSuggest: true, budgetAlert: true, analogs: true, reports: false });

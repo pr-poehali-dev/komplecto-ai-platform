@@ -156,9 +156,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 9px 12px;
-    border-radius: 8px;
-    font-size: 13.5px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--text-muted);
     transition: all 0.15s ease;
@@ -174,16 +174,16 @@
     color: var(--text-primary);
     background: var(--surface-4);
     border-left: 2px solid var(--orange);
-    padding-left: 10px;
+    padding-left: 12px;
   }
 
   .btn-orange {
     background: var(--orange);
     color: #000;
     font-weight: 600;
-    padding: 9px 20px;
-    border-radius: 8px;
-    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
     transition: all 0.15s ease;
     border: none;
     cursor: pointer;
@@ -202,9 +202,9 @@
     background: transparent;
     color: var(--text-secondary);
     font-weight: 500;
-    padding: 9px 16px;
-    border-radius: 8px;
-    font-size: 13.5px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
     transition: all 0.15s ease;
     border: 1px solid var(--border-color);
     cursor: pointer;
@@ -222,8 +222,8 @@
   .stat-card {
     background: var(--surface-3);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 14px;
+    padding: 22px;
     transition: all 0.2s ease;
   }
 
